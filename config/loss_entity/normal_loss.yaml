@@ -1,0 +1,3 @@
+_target_: loss_entities.NormalLoss
+
+name: 'NL'

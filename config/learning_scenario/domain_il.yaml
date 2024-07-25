@@ -1,0 +1,5 @@
+_target_: learning_scenarios.DomainIncrementalLearning
+
+num_tasks: ${n_tasks}
+num_classes_per_task: ${n_classes_per_task}
+name: 'domainIL'

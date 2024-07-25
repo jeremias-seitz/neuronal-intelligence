@@ -1,0 +1,7 @@
+_target_: optimizer.ContinualADAMOptimizer
+
+lr: ${learning_rate}
+betas: [0.9, 0.999]
+weight_decay: 5e-4
+steepness_factor: 0.5
+offset_factor: 0.4

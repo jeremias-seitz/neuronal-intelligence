@@ -1,0 +1,5 @@
+reset_model:
+  _target_: callbacks.SaveModel
+
+  path_directory: "/tungstenfs/scratch/gzenke/seitjere/repos/pytorch/pytorch/saved_models/mlp/"
+  name_dataset: "mnist"

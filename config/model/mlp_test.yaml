@@ -1,0 +1,5 @@
+_target_: models.MLP_Test
+
+input_dim: 784
+hidden_dims: [10, 10]
+dropout: 0

@@ -1,0 +1,3 @@
+_target_: models.vit_b_16
+
+dropout: 0

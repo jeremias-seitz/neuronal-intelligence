@@ -1,0 +1,3 @@
+_target_: models.resnet18
+
+bn_track_running_stats: True

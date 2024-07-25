@@ -1,0 +1,5 @@
+_target_: loss_entities.ElasticWeightConsolidation
+
+regularization_strength: 3.5
+damping: 0.1
+name: 'EWC'

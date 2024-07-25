@@ -1,0 +1,49 @@
+# @package _global_
+
+defaults:
+  - model: resnet18  # vit_b_32, mlp, resnet18
+  - dataset: cifar100  # cifar100, permuted_mnist
+  - optimizer: sgd  # adamw, sgd, continual_adam
+  - trainer: base_trainer
+  - learning_scenario: task_il  # task_il, domain_il, class_il
+  - loss_entity: learning_rate_scaling  # rwalk, learning_rate_scaling, si, ni, normal_loss
+  - loss_function: cross_entropy
+  - lr_scheduler: cosine_annealing  # cosine_annealing, reduce_on_plateau
+  - callbacks:
+      - no_callback
+      - wandb_logger
+      # - reset_model
+      # - reset_optimizer
+  - _self_
+
+# general
+seed: 53423
+cuda_num: 0
+epochs: 100
+is_joint_training: False
+use_task_permutation: False
+make_deterministic: False
+test_after_epoch: False
+use_lr_scheduler: True
+
+# data loader
+n_workers: 2  # 2, 4
+batch_size: 128  # 32, 128
+
+# learning scenario
+n_tasks: 10
+n_classes_per_task: 10
+
+# dataset
+shuffle_loader_data: False
+
+# optimizer
+learning_rate: 5e-4  #
+
+# log
+hydra:
+  job:
+    chdir: true
+  run:
+    dir: ./outputs/${now:%Y-%m-%d}/${now:%H-%M-%S}
+

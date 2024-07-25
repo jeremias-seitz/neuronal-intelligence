@@ -1,0 +1,3 @@
+no_callback:
+  _target_: callbacks.Callback
+

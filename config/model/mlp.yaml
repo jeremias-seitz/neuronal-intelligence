@@ -1,0 +1,5 @@
+_target_: models.MLP
+
+input_dim: 784
+hidden_dims: [2000, 2000]
+dropout: 0.35

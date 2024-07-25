@@ -1,0 +1,5 @@
+_target_: loss_entities.NeuronalIntelligenceLight
+
+regularization_strength: 100
+damping: 0.1
+name: 'NIlight'

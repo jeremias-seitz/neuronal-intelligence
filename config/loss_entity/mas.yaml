@@ -1,0 +1,4 @@
+_target_: loss_entities.MAS
+
+regularization_strength: 1
+name: 'MAS'

@@ -1,0 +1,5 @@
+_target_: datasets.RotatedMNIST
+
+num_tasks: ${n_tasks}
+seed: ${seed}
+path: '/tungstenfs/scratch/gzenke/shared/datasets/mnist'

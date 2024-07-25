@@ -1,0 +1,6 @@
+_target_: loss_entities.RiemannianWalk
+
+regularization_strength: 1000
+damping: 0.01
+alpha: 0.9
+name: 'RWalk'

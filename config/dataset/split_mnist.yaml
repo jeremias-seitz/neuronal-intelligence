@@ -1,0 +1,5 @@
+_target_: datasets.SplitMNIST
+
+num_tasks: ${n_tasks}
+num_classes_per_task: ${n_classes_per_task}
+path: '/tungstenfs/scratch/gzenke/shared/datasets/mnist'
