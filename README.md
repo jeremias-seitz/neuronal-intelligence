@@ -14,13 +14,34 @@
     <li>
       <a href="#getting-started">Getting Started</a>
       <ul>
+        <li><a href="#prerequisites">Prerequisites</a></li>
         <li><a href="#installation">Installation</a></li>
       </ul>
     </li>
-    <li><a href="#usage">Usage</a></li>
+    <li>
+      <a href="#usage">Usage</a>
+      <ul>
+        <li><a href="#run-in-default-settings">Run in detault settings</a></li>
+        <li><a href="#change-run-settings">Installation</a></li>
+      </ul>
+    </li>
+    <li>
+      <a href="#module-summaries">Module summaries</a>
+      <ul>
+        <li><a href="#callbacks">Callbacks</a></li>
+        <li><a href="#config">Configuration</a></li>
+        <li><a href="#datasets">Datsets</a></li>
+        <li><a href="#learning-scenarios">Learning scenarios</a></li>
+        <li><a href="#loss-entities-continual-learning-algorithms">Continual learning algorithms</a></li>
+        <li><a href="#lr-scheduler">Learning rate scheduler</a></li>
+        <li><a href="#models">Models</a></li>
+        <li><a href="#optimizer">Optimizer</a></li>
+        <li><a href="#trainer">Trainer</a></li>
+        <li><a href="#utils">Utility functions</a></li>
+      </ul>
+    </li>
     <li><a href="#license">License</a></li>
     <li><a href="#contact">Contact</a></li>
-    <li><a href="#acknowledgments">Acknowledgments</a></li>
   </ol>
 </details>
 
@@ -28,8 +49,6 @@
 
 <!-- ABOUT THE PROJECT -->
 ## About The Project
-
-[![Product Name Screen Shot][product-screenshot]](https://example.com)
 
 Continual learning for artificial neural networks has been a hot topic for a while.
 - Point of attack here is to reduce the amount of memory
@@ -45,9 +64,6 @@ Continual learning for artificial neural networks has been a hot topic for a whi
 <!-- GETTING STARTED -->
 ## Getting Started
 
-This is an example of how you may give instructions on setting up your project locally.
-To get a local copy up and running follow these simple example steps.
-
 ### Prerequisites
 
 A CUDA compatible GPU is required.
@@ -56,13 +72,14 @@ A CUDA compatible GPU is required.
 
 1. Clone the repo
     ```sh
-    git clone https://github.com/jeseitz/neuronal_intelligence.git
+    git clone https://github.com/jeremias-seitz/neuronal-intelligence.git
     ```
+
 2. Install packages
     ```sh
     pip install -r requirements.txt
     ```
-    Depending on the local Python version and the Cuda version on the GPU, only specific combinations of torch, torchvision and torchaudio work. See [here](todo) for some combinations that can be tried when the vanilla install does not work.
+
 3. Install the hydra package manually (does not work within requirements.txt)
     ```sh
     pip install hydra-core --upgrade
@@ -88,10 +105,10 @@ Before running the project, it is advisable to adjust the path setting in the [d
 ### Change run settings
 
 To change the configuration, there are four points to consider:
-1. Customize the configuration
-2. Configure a new object
-3. Specify a different configuration file
-4. Override arguments at runtime
+[1. Customize the configuration](#customize-the-hydra-configuration)
+[2. Configure a new object](#configure-a-new-object)
+[3. Specify a different configuration file](#specify-a-different-main-configuration-file)
+[4. Override arguments at runtime](#override-arguments-at-runtime)
 
 #### Customize the hydra configuration
 Hydra uses the YAML format for its configurations. The main configuration file used is [main.yaml](config/main.yaml). To change a setting, specify the desired value after the key. For example, to change the number of epochs during training, simply adjust the value after the 'epochs' key.
@@ -153,29 +170,29 @@ Hydra configuration tree. Contains a YAML file for every configurable object in 
 ### datasets
 Contains classes to handle datasets. The actual data will have to be downloaded into a specific directory. For more information, see [how to specify the path for datasets](#specify-path-to-datasets).
 The following datasets are currently implemented:
-<ol>
+<ul>
     <li>CIFAR10</li>
     <li>CIFAR100</li>
     <li>MNIST and variants (permuted, rotated, split)</li>
     <li>TinyImagenet</li>
-</ol>
+</ul>
 
 ### learning scenarios
 A learning scenario defines how tasks are learned which varies the difficulty of continual learning. The three scenarios are adapted from [Three scenarios for continual learning](http://arxiv.org/abs/1904.07734)(van de Ven & Tolias, 2019).
 <details>
   <summary>Learning scenarios:</summary>
-  <ol>
+  <ul>
     <li>
-        Class incremental learning expands the single-headed output layer for each new task. This is the hardest learning scenario since output neurons corresponding to previous task are not masked out. As a result, their readout weights can still experience gradient flow and can accordingly be subject to change.
+        **Class incremental learning** expands the single-headed output layer for each new task. This is the hardest learning scenario since output neurons corresponding to previous task are not masked out. As a result, their readout weights can still experience gradient flow and can accordingly be subject to change.
     </li>
     <li>
-        Domain incremental learning uses the same single output head for all tasks during training and testing. It can be used when the input distribution is changing but the number of classes remains constant.
+        Domain **incremental learning** uses the same single output head for all tasks during training and testing. It can be used when the input distribution is changing but the number of classes remains constant.
     </li>
     <li>
-        In the task incremental learning scenario the context is always known. The output is multi-headed with the 
+        In the task **incremental learning** scenario the context is always known. The output is multi-headed with the 
         context defining the head to be used during training as well as testing. While every task is assigned a different output head the rest of the model is shared between the tasks.
     </li>
-  </ol>
+  </ul>
 </details>
 The scenarios are implemented using two components. First, the scenario class that takes care of defining the mask for the relevant output nodes and correcting for label offsets. And second, the network propagator class that propagates the input through the network.
  
@@ -188,26 +205,25 @@ All continual learning algorithms are defined here. The main training and testin
 4. Test a single batch
 
 The following continual learning algorithms are currently implemented:
-<ol>
+<ul>
     <li>synaptic intelligence and variants</li>
     <li>neuronal intelligence and variants (OURS)</li>
     <li>learning rate scaling (OURS)</li>
     <li>elastic weight consolidation</li>
     <li>memory aware synapses</li>
     <li>riemannian walk</li>
-    <li>vanilla backpropagation</li>
-</ol>
+</ul>
 
 ### lr scheduler
 Contains a wrapper and interface for different learning rate schedulers.
 
 ### models
 Defines a number of backbones to the training process. Currently defined are:
-<ol>
+<ul>
     <li>MLP</li>
     <li>ResNets</li>
     <li>Vision transformer<li>
-</ol>
+</ul>
 
 
 ### optimizer
@@ -237,7 +253,7 @@ Distributed under the MIT License. See `LICENSE.txt` for more information.
 
 Jeremias Seitz - jeremias.seitz@gmail.com
 
-Project Link: [https://github.com/jeseitz/neuronal_intelligence](https://github.com/jeseitz/neuronal_intelligence)
+Project Link: [https://github.com/jeremias-seitz/neuronal-intelligence](https://github.com/jeremias-seitz/neuronal-intelligence)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
