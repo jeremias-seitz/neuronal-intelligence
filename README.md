@@ -106,8 +106,11 @@ Before running the project, it is advisable to adjust the path setting in the [d
 
 To change the configuration, there are four points to consider:
 [1. Customize the configuration](#customize-the-hydra-configuration)
+
 [2. Configure a new object](#configure-a-new-object)
+
 [3. Specify a different configuration file](#specify-a-different-main-configuration-file)
+
 [4. Override arguments at runtime](#override-arguments-at-runtime)
 
 #### Customize the hydra configuration
@@ -199,10 +202,12 @@ The scenarios are implemented using two components. First, the scenario class th
 ### loss entities (continual learning algorithms)
 All continual learning algorithms are defined here. The main training and testing functionality is shared between these algorithm classes and the [trainer class](trainer/base_trainer.py), see also [trainer](#trainer). Implemented here are always these four functionalities:
 
-1. Preparation for a new task
-2. Loss computation
-3. Train a single batch
-4. Test a single batch
+<ul>
+  <li>Preparation for a new task</li>
+  <li>Loss computation</li>
+  <li>Train a single batch</li>
+  <li>Test a single batch</li>
+</ul>
 
 The following continual learning algorithms are currently implemented:
 <ul>
