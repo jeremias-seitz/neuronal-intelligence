@@ -4,17 +4,17 @@ import numpy as np
 import random
 
 
-__all__ = ['generate_wandb_run_name_from_hydra', 
+__all__ = ['generate_run_name_from_hydra', 
            'remove_target_key',
            'get_device_from_config', 
            'set_seed_all',
            'save_model']
 
 
-def generate_wandb_run_name_from_hydra(config):
+def generate_run_name_from_hydra(config):
     """
-    Example function to generate a wandb run name from the hydra configuration. This can be useful to differentiate 
-    runs later on. (This is only relevant if the wandb service is used, see e.g. https://wandb.ai/home.)
+    Example function to generate a run name from the hydra configuration. This can be useful to differentiate runs
+    later on when logging (if e.g. the wandb service is used, see https://wandb.ai/home.)
 
     Args:
         config (dictconfig.DictConfig): Hydra configuration file

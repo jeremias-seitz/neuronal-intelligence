@@ -2,10 +2,10 @@ import hydra
 import os
 import numpy as np
 
-from utils import generate_run_name_hydra, remove_target_key, set_seed_all, get_device_from_config
+from utils import generate_run_name_from_hydra, remove_target_key, set_seed_all, get_device_from_config
 from datasets import TaskShuffledLabels
 from lr_scheduler import LRSchedulerWrapper
-from network import NetworkPropagator
+from learning_scenarios import NetworkPropagator
 
 
 @hydra.main(version_base=None, config_path="config/", config_name="main.yaml")
@@ -73,7 +73,7 @@ def main(config):
     
     scheduler_wrapper = LRSchedulerWrapper()
 
-    print(generate_run_name_hydra(config))
+    print(generate_run_name_from_hydra(config))
 
     #############
     # Task Loop #
