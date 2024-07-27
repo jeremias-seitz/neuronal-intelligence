@@ -32,9 +32,9 @@ class RiemannianWalk(RegularizationLoss):
                                                   device=self.device) for name, param in self.params.items()}
 
         self.task_list = []
-        self.damping = self.config.loss_entity.damping
-        self.alpha = self.config.loss_entity.alpha
-        self.regularization_strength = self.config.loss_entity.regularization_strength
+        self.damping = self.config.algorithm.damping
+        self.alpha = self.config.algorithm.alpha
+        self.regularization_strength = self.config.algorithm.regularization_strength
 
     def _evaluate_importance(self):
         """

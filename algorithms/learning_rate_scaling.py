@@ -49,9 +49,9 @@ class NeuronalLearningRateScaling(IAlgorithm):
         self.neuronal_availability = {name: torch.ones(param.size(0), requires_grad=False, 
                                              device=self.device) for name, param in self.params.items()}
         
-        self.steepness_factor = self.config.loss_entity.steepness_factor
-        self.offset_factor = self.config.loss_entity.offset_factor
-        self.lr = self.config.loss_entity.learning_rate
+        self.steepness_factor = self.config.algorithm.steepness_factor
+        self.offset_factor = self.config.algorithm.offset_factor
+        self.lr = self.config.algorithm.learning_rate
 
     def _evaluate_importance_and_availability(self) -> None:
         """

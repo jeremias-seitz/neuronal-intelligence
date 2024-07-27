@@ -39,7 +39,7 @@ class IAlgorithm(ABC):
         self.loss_fn = loss_function
         self.optimizer = optimizer
         self.config = configuration
-        self.device = get_device_from_config(configuration=configuration)
+        self.device = get_device_from_config(config=configuration)
         self.data_loaders = data_loaders
         self.network_propagator = network_propagator
         self.is_initial_task = True

@@ -41,7 +41,7 @@ class MAS(RegularizationLoss):
         self.importance = {name: torch.zeros_like(input=param, requires_grad=False, 
                                                   device=self.device) for name, param in self.params.items()}
         self.task_list = []
-        self.regularization_strength = self.config.loss_entity.regularization_strength
+        self.regularization_strength = self.config.algorithm.regularization_strength
 
     def _evaluate_importance(self):
         """

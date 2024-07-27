@@ -43,8 +43,8 @@ class SynapticIntelligenceAutotuning(IAlgorithm):
                                                       device=self.device) for name, param in self.params.items()}
 
         self.task_list = []
-        self.damping = self.config.loss_entity.damping
-        self.regularization_strength = self.config.loss_entity.regularization_strength
+        self.damping = self.config.algorithm.damping
+        self.regularization_strength = self.config.algorithm.regularization_strength
 
         self._task_loss_before_training = self._evaluate_task_performance(task_id=task_id)
 

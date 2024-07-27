@@ -56,17 +56,17 @@ def main(config):
                                            learning_scenario=learning_scenario,
                                            device=get_device_from_config(config=config))
     
-    loss_entity = hydra.utils.instantiate(config=config.loss_entity,
-                                          model=model,
-                                          loss_function=loss_fn,
-                                          optimizer=optimizer,
-                                          configuration=remove_target_key(config),
-                                          data_loaders=train_data_loader,
-                                          network_propagator=network_propagator)
+    algorithm = hydra.utils.instantiate(config=config.algorithm,
+                                        model=model,
+                                        loss_function=loss_fn,
+                                        optimizer=optimizer,
+                                        configuration=remove_target_key(config),
+                                        data_loaders=train_data_loader,
+                                        network_propagator=network_propagator)
 
     trainer = hydra.utils.instantiate(config=config.trainer, 
                                       model=model, 
-                                      loss_entity=loss_entity,  
+                                      algorithm=algorithm,  
                                       callbacks=callbacks, 
                                       configuration=remove_target_key(config),
                                       network_propagator=network_propagator)

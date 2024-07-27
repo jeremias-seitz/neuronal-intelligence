@@ -26,8 +26,8 @@ class SynapticIntelligenceLight(RegularizationLoss):
                                                       device=self.device) for name, param in self.params.items()}
 
         self.task_list = []
-        self.damping = self.config.loss_entity.damping
-        self.regularization_strength = self.config.loss_entity.regularization_strength
+        self.damping = self.config.algorithm.damping
+        self.regularization_strength = self.config.algorithm.regularization_strength
 
     def _evaluate_importance(self):
         """

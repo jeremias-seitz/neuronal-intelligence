@@ -15,7 +15,7 @@ class BaseTrainer():
     """
     def __init__(self, 
                  model: torch.nn.Module, 
-                 loss_entity: IAlgorithm, 
+                 algorithm: IAlgorithm, 
                  callbacks: List[Callback],
                  configuration: dictconfig.DictConfig,
                  network_propagator: NetworkPropagator,
@@ -23,7 +23,7 @@ class BaseTrainer():
         """
         Args:
             model (torch.nn.Module): Model used for training and testing
-            loss_entity (ILossEntity): Computes the loss and implements the specific train and test functionalities
+            algorithm (IAlgorithm): Computes the loss and implements the specific train and test functionalities
             callbacks (list): List of callbacks that will be called during the training and validation process at specific
                 time points in the process.
             configuration (dictconfig.DictConfig): Hydra configuration file
@@ -31,11 +31,19 @@ class BaseTrainer():
                 according to the learning scenario (e.g. single vs multi-headed output).
         """
         self._model = model.to(get_device_from_config(config=configuration))
-        self._loss_entity = loss_entity
+        self._algorithm = algorithm
         self._network_propagator = network_propagator
 
         self._callbacks = callbacks
         self._dispatch_callbacks('on_init', trainer=self, config=configuration)
+
+    @property
+    def model(self):
+        return self._model
+    
+    @property
+    def algorithm(self):
+        return self._algorithm
 
     def prepare_task(self, task_id: int):
         """
@@ -44,7 +52,7 @@ class BaseTrainer():
         Args:
             task_id (int): Task ID
         """
-        self._loss_entity.prepare_task(task_id=task_id)
+        self._algorithm.prepare_task(task_id=task_id)
         self._network_propagator.prepare_task(task_id=task_id)
 
         self._dispatch_callbacks('on_new_task', task_id=task_id)
@@ -73,7 +81,7 @@ class BaseTrainer():
             predictions, labels = self._network_propagator.get_predictions_and_labels(inputs=data, 
                                                                                       labels=labels, 
                                                                                       task_id=task_id)
-            loss, num_correct_predictions = self._loss_entity.train_batch(predictions=predictions,
+            loss, num_correct_predictions = self._algorithm.train_batch(predictions=predictions,
                                                                           targets=labels,
                                                                           task_id=task_id)
             train_loss += loss
@@ -115,7 +123,7 @@ class BaseTrainer():
                 predictions, labels = self._network_propagator.get_predictions_and_labels(inputs=data, 
                                                                                           labels=labels, 
                                                                                           task_id=task_id)
-                loss, num_correct_predictions = self._loss_entity.test_batch(predictions=predictions,
+                loss, num_correct_predictions = self._algorithm.test_batch(predictions=predictions,
                                                                              targets=labels,
                                                                              task_id=task_id)
                 test_loss += loss
