@@ -30,7 +30,7 @@ class IScenario(ABC):
     modification.
     """
     @abstractmethod
-    def __init__(self, num_tasks:int, num_classes_per_task:int) -> None:
+    def __init__(self, num_tasks:int, num_classes_per_task:int, **kwargs) -> None:
         pass
 
     def get_output_mask(self, task_id:int, is_joint_training:bool=False) -> List[int]:
@@ -85,7 +85,7 @@ class ClassIncrementalLearning(IScenario):
     scenario since output neurons corresponding to previous task are not masked out. As a result, their readout weights  
     can still experience gradient flow and can accordingly be subject to change.
     """
-    def __init__(self, num_tasks: int, num_classes_per_task: int) -> None:
+    def __init__(self, num_tasks: int, num_classes_per_task: int, **kwargs) -> None:
         """
         Args:
             num_tasks (int): Number of tasks
@@ -101,7 +101,7 @@ class DomainIncrementalLearning(IScenario):
     Domain incremental learning is single-headed and always uses the same output nodes for all tasks and for training
     as well as testing. It can be used when the input distribution is changing but the number of classes remains constant.
     """
-    def __init__(self, num_tasks: int, num_classes_per_task: int) -> None:
+    def __init__(self, num_tasks: int, num_classes_per_task: int, **kwargs) -> None:
         """
         Args:
             num_tasks (int): Number of tasks
@@ -118,7 +118,7 @@ class TaskIncrementalLearning(IScenario):
     context defining the head to be used during training as well as testing. As a result, the single output layer is
     split into multiple heads, one for each task, but all the rest of the model is shared between the tasks.
     """
-    def __init__(self, num_tasks: int, num_classes_per_task: int) -> None:   
+    def __init__(self, num_tasks: int, num_classes_per_task: int, **kwargs) -> None:   
         """
         Args:
             num_tasks (int): Number of tasks
