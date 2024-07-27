@@ -32,7 +32,7 @@
         <li><a href="#config">Configuration</a></li>
         <li><a href="#datasets">Datsets</a></li>
         <li><a href="#learning-scenarios">Learning scenarios</a></li>
-        <li><a href="#loss-entities-continual-learning-algorithms">Continual learning algorithms</a></li>
+        <li><a href="#algorithms">Continual learning algorithms</a></li>
         <li><a href="#lr-scheduler">Learning rate scheduler</a></li>
         <li><a href="#models">Models</a></li>
         <li><a href="#optimizer">Optimizer</a></li>
@@ -234,7 +234,7 @@ Defines a number of backbones to the training process. Currently defined are:
 ### optimizer
 Implements the learning rate scaling algorithm implemented as custom continual learning optimizers based on SGD and Adam respectively. The optimizers are self-contained and can be used with any arbitrary loss function.
 
-Note that when using either of the custom optimizers, the loss entity has to be set to the normal loss in the configuration.
+Note that when using either of the custom optimizers, the algorithm has to be set to the `vanilla_backprop` in the configuration.
 
 ### trainer
 Implements training and testing routines for different tasks and calls the hooks for callback functions. This class calls the specific training and testing functions defined in the [continual learning algorithms implementations](algorithms/), see also [the algorithm section](#algorithms).

@@ -2,8 +2,7 @@ import torch
 from typing import Tuple
 from abc import abstractmethod
 
-from .i_loss_entity import IAlgorithm
-
+from .i_algorithm import IAlgorithm
 
 
 class RegularizationLoss(IAlgorithm):

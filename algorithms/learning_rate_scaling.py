@@ -1,7 +1,7 @@
 import torch
 from typing import Tuple
 
-from .i_loss_entity import IAlgorithm
+from .i_algorithm import IAlgorithm
 
 
 class NeuronalLearningRateScaling(IAlgorithm):
