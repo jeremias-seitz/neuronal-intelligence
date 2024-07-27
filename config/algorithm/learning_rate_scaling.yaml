@@ -1,4 +1,4 @@
-_target_: loss_entities.NeuronalLearningRateScaling
+_target_: algorithms.NeuronalLearningRateScaling
 
 steepness_factor: 0.5
 offset_factor: 0.5

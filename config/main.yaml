@@ -6,7 +6,7 @@ defaults:
   - optimizer: sgd  # adamw, sgd, continual_adam
   - trainer: base_trainer
   - learning_scenario: task_il  # task_il, domain_il, class_il
-  - loss_entity: learning_rate_scaling  # rwalk, learning_rate_scaling, si, ni, normal_loss
+  - algorithm: learning_rate_scaling  # rwalk, learning_rate_scaling, si, ni, vanilla_backprop
   - loss_function: cross_entropy
   - lr_scheduler: cosine_annealing  # cosine_annealing, reduce_on_plateau
   - callbacks:

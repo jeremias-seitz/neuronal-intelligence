@@ -4,8 +4,8 @@ from tqdm import tqdm
 from omegaconf import dictconfig
 
 from callbacks import Callback
-from network import NetworkPropagator
-from loss_entities import ILossEntity
+from learning_scenarios import NetworkPropagator
+from algorithms import IAlgorithm
 from utils import get_device_from_config
 
 
@@ -15,7 +15,7 @@ class BaseTrainer():
     """
     def __init__(self, 
                  model: torch.nn.Module, 
-                 loss_entity: ILossEntity, 
+                 loss_entity: IAlgorithm, 
                  callbacks: List[Callback],
                  configuration: dictconfig.DictConfig,
                  network_propagator: NetworkPropagator,

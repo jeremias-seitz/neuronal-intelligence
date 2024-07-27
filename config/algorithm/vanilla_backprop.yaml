@@ -1,0 +1,3 @@
+_target_: algorithms.VanillaBackprop
+
+name: 'backprop'

@@ -1,4 +1,4 @@
-_target_: loss_entities.NeuronalIntelligenceLight
+_target_: algorithms.NeuronalIntelligenceLight
 
 regularization_strength: 100
 damping: 0.1

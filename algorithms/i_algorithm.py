@@ -4,13 +4,13 @@ from omegaconf import dictconfig
 from abc import ABC, abstractmethod
 
 from utils import get_device_from_config
-from network import NetworkPropagator
+from learning_scenarios import NetworkPropagator
 
 
-class ILossEntity(ABC):
+class IAlgorithm(ABC):
     """
-    Interface class for supervised training algorithms. The proposed call signatures should be followed unless changes
-    have been made to the corresponding trainer class in the 'trainer' module.
+    Interface class for supervised training algorithms used in classification. The proposed call signatures should be
+    followed unless appropriate changes have been made to the corresponding trainer class in the 'trainer' module.
 
     This class plans for the following functions to be implemented:
      - 'prepare_task': Computations in preparation for a new task

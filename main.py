@@ -49,12 +49,12 @@ def main(config):
 
     optimizer = hydra.utils.instantiate(config=config.optimizer, params=model.parameters())
 
-    loss_fn = hydra.utils.instantiate(config=config.loss)
+    loss_fn = hydra.utils.instantiate(config=config.loss_function)
 
     network_propagator = NetworkPropagator(model=model,
                                            configuration=remove_target_key(config),
                                            learning_scenario=learning_scenario,
-                                           device=get_device_from_config(configuration=config))
+                                           device=get_device_from_config(config=config))
     
     loss_entity = hydra.utils.instantiate(config=config.loss_entity,
                                           model=model,

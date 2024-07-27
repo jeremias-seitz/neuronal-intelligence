@@ -1,10 +1,10 @@
 import torch
 from typing import Tuple
 
-from .regularization_loss import ILossEntity
+from .i_algorithm import IAlgorithm
 
 
-class NormalLoss(ILossEntity):
+class VanillaBackprop(IAlgorithm):
     """
     Vanilla implementation of regular supervised training of a classification task.
     """

@@ -1,4 +1,4 @@
-_target_: loss_entities.SynapticIntelligence
+_target_: algorithms.SynapticIntelligence
 
 regularization_strength: 10
 damping: 0.1

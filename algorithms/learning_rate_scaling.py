@@ -1,10 +1,10 @@
 import torch
 from typing import Tuple
 
-from .i_loss_entity import ILossEntity
+from .i_loss_entity import IAlgorithm
 
 
-class NeuronalLearningRateScaling(ILossEntity):
+class NeuronalLearningRateScaling(IAlgorithm):
     """
     Based on Neuronal Intelligence (see class in this module), the Neuronal Learning Rate Scaling algorithm ranks the
     neurons depending on their importance separately for each layer of the network. The updates of all parameters in

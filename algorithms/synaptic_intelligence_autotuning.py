@@ -1,10 +1,10 @@
 import torch
 from typing import Tuple
 
-from .regularization_loss import ILossEntity
+from .i_algorithm import IAlgorithm
 
 
-class SynapticIntelligenceAutotuning(ILossEntity):
+class SynapticIntelligenceAutotuning(IAlgorithm):
     """
     Extension of the Synaptic Intelligence alrogithm (see class `SynapticIntelligence` in this module).
 

@@ -94,7 +94,7 @@ A CUDA compatible GPU is required.
 
 ### Run in default settings
 
-This project uses the [hydra](https://hydra.cc/docs/intro/) configuration package. By default, this [configuration file](config/main.yaml) is used. You can run the project in the default configuration with
+This project uses the [hydra](https://hydra.cc/docs/intro/) configuration package. By default, [this configuration file](config/main.yaml) is used. You can run the project in the default configuration with
 ```sh
 python main.py
 ```
@@ -199,7 +199,7 @@ A learning scenario defines how tasks are learned which varies the difficulty of
 </details>
 The scenarios are implemented using two components. First, the scenario class that takes care of defining the mask for the relevant output nodes and correcting for label offsets. And second, the network propagator class that propagates the input through the network.
  
-### loss entities (continual learning algorithms)
+### algorithms
 All continual learning algorithms are defined here. The main training and testing functionality is shared between these algorithm classes and the [trainer class](trainer/base_trainer.py), see also [trainer](#trainer). Implemented here are always these four functionalities:
 
 <ul>
@@ -237,7 +237,7 @@ Implements the learning rate scaling algorithm implemented as custom continual l
 Note that when using either of the custom optimizers, the loss entity has to be set to the normal loss in the configuration.
 
 ### trainer
-Implements training and testing routines for different tasks and calls the hooks for callback functions. This class calls the specific training and testing functions defined in the [continual learning algorithms](loss_entities/), see also [loss entities](#loss-entities-continual-learning-algorithms).
+Implements training and testing routines for different tasks and calls the hooks for callback functions. This class calls the specific training and testing functions defined in the [continual learning algorithms implementations](algorithms/), see also [the algorithm section](#algorithms).
 
 ### utils
 Utility functions shared between different classes.

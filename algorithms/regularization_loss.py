@@ -2,11 +2,11 @@ import torch
 from typing import Tuple
 from abc import abstractmethod
 
-from .i_loss_entity import ILossEntity
+from .i_loss_entity import IAlgorithm
 
 
 
-class RegularizationLoss(ILossEntity):
+class RegularizationLoss(IAlgorithm):
     """
     Prototype class for implementing regularization-based continual learning algorithms. 
     """

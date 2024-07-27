@@ -1,4 +1,4 @@
-_target_: loss_entities.ElasticWeightConsolidation
+_target_: algorithms.ElasticWeightConsolidation
 
 regularization_strength: 3.5
 damping: 0.1
