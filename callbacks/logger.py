@@ -1,5 +1,5 @@
 import wandb
-from utils import generate_wandb_run_name_from_hydra
+from utils import generate_run_name_from_hydra
 from statistics import mean
 from omegaconf import OmegaConf
 
@@ -28,7 +28,7 @@ class WANDBLogger(Callback):
         self._model = trainer.model
         self._config = config
 
-        run_name = generate_wandb_run_name_from_hydra(config=config)
+        run_name = generate_run_name_from_hydra(config=config)
         wandb.config = OmegaConf.to_container(config, resolve=True, throw_on_missing=True)
 
         if self._enabled:
