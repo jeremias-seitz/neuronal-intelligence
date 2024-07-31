@@ -68,14 +68,13 @@ class ContinualSGDOptimizer(torch.optim.Optimizer):
                 p.data = param + synaptic_delta_batch
 
                 # Accumulate neuronal importance
-                synaptic_delta_task = torch.sub(p.data.clone().detach(), state['ref'])
-                synaptic_task_importance = grad * synaptic_delta_batch / (synaptic_delta_task**2 + group['damping'])
+                synaptic_task_importance = grad * synaptic_delta_batch
 
-                mean_dimensions = (tuple(range(1, synaptic_delta_batch.ndim)))
-                if len(mean_dimensions) > 0:
-                    state['ni_accumulator'] = synaptic_task_importance.mean(dim=mean_dimensions)
+                if synaptic_delta_batch.ndim > 1:
+                    mean_dimensions = (tuple(range(1, synaptic_delta_batch.ndim)))
+                    state['ni_accumulator'] -= synaptic_task_importance.mean(dim=mean_dimensions)
                 else:
-                    state['ni_accumulator'] = synaptic_task_importance
+                    state['ni_accumulator'] -= synaptic_task_importance
 
         return loss
     
