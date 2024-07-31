@@ -72,8 +72,8 @@ class ContinualADAMOptimizer(torch.optim.Optimizer):
                 # Accumulate neuronal importance
                 synaptic_task_importance = grad * synaptic_delta_batch
 
-                mean_dimensions = (tuple(range(1, synaptic_delta_batch.ndim)))
-                if len(mean_dimensions) > 0:
+                if synaptic_delta_batch.ndim > 1:
+                    mean_dimensions = (tuple(range(1, synaptic_delta_batch.ndim)))
                     state['ni_accumulator'] -= synaptic_task_importance.mean(dim=mean_dimensions)
                 else:
                     state['ni_accumulator'] -= synaptic_task_importance
