@@ -10,6 +10,8 @@ class IDataset(ABC):
     training while the testing is still done task-wise. Joint-training is a control to obtain an upper performance 
     bound since most neural networks prefer training everything at the same time.
     """
+    name = ""
+    
     @abstractmethod
     def get_data_loaders(self, batch_size: int, shuffle:bool=True, num_workers: int=4) -> Tuple[List[Dataset], List[Dataset]]:
         """

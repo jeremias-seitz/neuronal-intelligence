@@ -42,12 +42,13 @@ class TinyImageNet(IDataset):
     Dataset class for TinyImageNet.
     Adjusted from: https://github.com/ehuynh1106/TinyImageNet-Transformers/blob/main/dataset.py
     """
-    def __init__(self, num_tasks:int, num_classes_per_task:int, path: str, target_transform=None, image_size:int=32, task_permutation:List[int]=None):
+    def __init__(self, num_tasks:int, num_classes_per_task:int, path: str, target_transform=None, image_size:int=32, task_permutation:List[int]=None, name: str=""):
         """
         Args:
             num_tasks (int): Number of tasks.
             num_classes_per_task (int): Number of classes per task.
             path (str): Path to the directory where the dataset is / should be stored
+            name (str): name of dataset in config (purely for logging)
         """
         n_classes_total = num_tasks * num_classes_per_task
         if n_classes_total > 200 or n_classes_total < 1:

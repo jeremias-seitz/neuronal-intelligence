@@ -15,15 +15,25 @@ class PermutedMNIST(MNIST):
     Dataset class for permuted MNIST. A pixel-wise permutation is applied to the MNIST images. Within each task, the 
     permutation is the same for all images but different to the permutations from other tasks. 
     """
-    def __init__(self, num_tasks:int, path:str, seed:int=53423):
+    def __init__(self, num_tasks:int, path:str, seed:int=53423, target_transform=None, task_permutation:List[int]=None, name: str=""):
         """
         Args:
             num_tasks (int): Number of tasks.
             path (str): Path to the directory where the dataset is / should be stored
             seed (int): Seed for the random number generator.
+            target_transform: Target transformation
+            task_permutation (List[int]): Task order after shuffling
+            name (str): name of dataset in config (purely for logging)
         """
         self._num_tasks = num_tasks
         self._path = path
+        self._target_transform = target_transform
+
+        if task_permutation is not None:
+            self._task_order = task_permutation
+        else:
+            self._task_order = [task for task in range(num_tasks)]
+
         self._seed = seed
         np.random.seed(seed=seed)
 
@@ -51,15 +61,25 @@ class RotatedMNIST(MNIST):
     Dataset class for rotated MNIST. A rotation is applied to the MNIST images. Within each task, the rotation is the
     same for all images but different to the rotations from other tasks. 
     """
-    def __init__(self, num_tasks:int, path:str, seed:int=53423):
+    def __init__(self, num_tasks:int, path:str, seed:int=53423, target_transform=None, task_permutation:List[int]=None, name: str=""):
         """
         Args:
             num_tasks (int): Number of tasks.
             path (str): Path to the directory where the dataset is / should be stored
             seed (int): Seed for the random number generator.
+            target_transform: Target transformation
+            task_permutation (List[int]): Task order after shuffling
+            name (str): name of dataset in config (purely for logging)
         """
         self._num_tasks = num_tasks
         self._path = path
+        self._target_transform = target_transform
+
+        if task_permutation is not None:
+            self._task_order = task_permutation
+        else:
+            self._task_order = [task for task in range(num_tasks)]
+        
         self._seed = seed
         np.random.seed(seed=seed)
 
@@ -108,11 +128,14 @@ class SplitMNIST(IDataset):
     Dataset class for split MNIST. Splits MNIST into smaller subsets only containing specific digits for different
     tasks.
     """
-    def __init__(self, num_tasks:int, num_classes_per_task:int, path:str, target_transform=None, task_permutation:List[int]=None):
+    def __init__(self, num_tasks:int, num_classes_per_task:int, path:str, target_transform=None, task_permutation:List[int]=None, name: str=""):
         """
         Args:
             num_tasks (int): Number of tasks.
             seed (int): Seed for the random number generator.
+            target_transform: Target transformation
+            task_permutation (List[int]): Task order after shuffling
+            name (str): name of dataset in config (purely for logging)
         """
         n_classes_total = num_tasks * num_classes_per_task
         if n_classes_total > 10 or n_classes_total < 1:

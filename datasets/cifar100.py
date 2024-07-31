@@ -10,7 +10,7 @@ class Cifar100(IDataset):
     """
     Dataset class for CIFAR100.
     """
-    def __init__(self, num_tasks:int, num_classes_per_task:int, path:str, target_transform=None, image_size:int=32, task_permutation:List[int]=None):
+    def __init__(self, num_tasks:int, num_classes_per_task:int, path:str, target_transform=None, image_size:int=32, task_permutation:List[int]=None, name: str=""):
         """
         Args:
             num_tasks (int): Number of tasks
@@ -18,6 +18,7 @@ class Cifar100(IDataset):
             path (str): Path to the directory where the dataset is / should be stored
             target_transform: Target transformation
             task_permutation (List[int]): Task order after shuffling
+            name (str): name of dataset in config (purely for logging)
         """
         n_classes_total = num_tasks * num_classes_per_task
         if n_classes_total > 100 or n_classes_total < 1:
