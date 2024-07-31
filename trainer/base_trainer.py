@@ -19,6 +19,7 @@ class BaseTrainer():
                  callbacks: List[Callback],
                  configuration: dictconfig.DictConfig,
                  network_propagator: NetworkPropagator,
+                 optimizer: torch.optim
                  ) -> None:
         """
         Args:
@@ -29,10 +30,12 @@ class BaseTrainer():
             configuration (dictconfig.DictConfig): Hydra configuration file
             network_propagator (NetworkPropagator): Object taking care of forwarding data through the network
                 according to the learning scenario (e.g. single vs multi-headed output).
+            optimizer (torch.optim): Optimizer (only required to forward to callback functions)
         """
         self._model = model.to(get_device_from_config(config=configuration))
         self._algorithm = algorithm
         self._network_propagator = network_propagator
+        self._optimizer = optimizer
 
         self._callbacks = callbacks
         self._dispatch_callbacks('on_init', trainer=self, config=configuration)
@@ -44,6 +47,10 @@ class BaseTrainer():
     @property
     def algorithm(self):
         return self._algorithm
+    
+    @property
+    def optimizer(self):
+        return self._optimizer
 
     def prepare_task(self, task_id: int):
         """
@@ -55,7 +62,8 @@ class BaseTrainer():
         self._algorithm.prepare_task(task_id=task_id)
         self._network_propagator.prepare_task(task_id=task_id)
 
-        self._dispatch_callbacks('on_new_task', task_id=task_id)
+        self._dispatch_callbacks('on_new_task', task_id=task_id)  #,
+                                #  delta_mean=self._algorithm._mean_delta[-1], delta_std=self._algorithm._std_delta[-1])
 
     def train_task(self, task_id: int, data_loader: torch.utils.data.DataLoader, 
                    enable_logging:bool=True) -> Tuple[float, float]:
