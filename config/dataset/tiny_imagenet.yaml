@@ -2,5 +2,6 @@ _target_: datasets.TinyImageNet
 
 num_tasks: ${n_tasks}
 num_classes_per_task: ${n_classes_per_task}
-seed: ${seed}
-path: '/ereborfs/shared/datasets/tiny-imagenet-200/'
+image_size: 224
+path: '/tungstenfs/scratch/gzenke/shared/datasets/tiny_imagenet_dataset/'
+name: 'TinyImageNet'

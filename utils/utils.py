@@ -27,7 +27,9 @@ def generate_run_name_from_hydra(config):
         run_name = config.run_name_string
     else:
         run_name = config.algorithm.name
-        # run_name += f"_C{config.algorithm.regularization_strength}"
+        if 'regularization_strength' in config.algorithm.keys():
+            run_name += f"_C{config.algorithm.regularization_strength}"
+        run_name += f"_{config.dataset.name}"
         if config.is_joint_training: run_name += "_joint"
         run_name += f"_{config.learning_scenario.name}"
         if config.optimizer.weight_decay > 0:

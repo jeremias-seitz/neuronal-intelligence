@@ -4,3 +4,4 @@ num_tasks: ${n_tasks}
 num_classes_per_task: ${n_classes_per_task}
 image_size: 32
 path: '/tungstenfs/scratch/gzenke/shared/datasets/cifar10'
+name: 'CIFAR10'
