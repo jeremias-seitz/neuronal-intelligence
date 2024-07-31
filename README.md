@@ -50,12 +50,30 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-Continual learning for artificial neural networks has been a hot topic for a while.
-- Point of attack here is to reduce the amount of memory
-- Possibility to implement everything as an optimizer
-- Significant reduction in parameters but performance does not surpass previous methods
-- Purpose is to provide a framework for easy integration of new methods
-- Uses PyTorch
+Continual learning is essential when faced with non-stationary data. Many popular continual learning methods rely on 
+either replay or surrogate losses that encode previous tasks in a weight regularization term. Both entail 
+computational and memory overhead due to additional circuitry or per-parameter variables. This cost precludes using 
+these strategies in large models or mobile and edge applications with tight hardware constraints. To address this 
+issue, we propose several variants of resource-efficient continual learning algorithms based on a neuronal importance 
+measure that can be either used as a memory-efficient drop-in replacement for regularization strategies or to yield 
+per-parameter learning rates. These modifications drastically reduce the required memory and we show empirically that 
+they result in comparable performance to per-parameter regularization approaches
+
+Intelligent agents have to continuously learn when faced with non-stationary environments. 
+The challenge is to efficiently adapt to new tasks while retaining good performance on tasks learned previously. Traditional deep learning algorithms - primarily designed for stationary data - struggle in this \emph{continual learning} setting where they are prone to catastrophic forgetting of already acquired information ([Parisi et al., 2019](http://arxiv.org/abs/1802.07569), [Wang et al., 2023](http://arxiv.org/abs/2302.00487).
+
+Of the many continual learning strategies proposed to mitigate catastrophic forgetting, the most dominant ones are replay-based methods, which employ a replay buffer or a generative model to jointly mix data from old tasks and new tasks, and regularization-based methods such as Elastic Weight Consolidation (EWC) ([Kirkpatrick et al;, 2017](http://arxiv.org/abs/1612.00796)) or Synaptic Intelligence (SI) ([Zenke et al., 2017](http://arxiv.org/abs/1703.04200)), that employ structural regularization to protect important parameters. 
+However, both approaches incur a cost. While the former requires extra circuitry to enable replay, the latter requires storing one or more variables per synapse in the network to implement the regularization term. This added cost limits their applicability whenever memory is a constraining resource, such as large models or edge applications. To overcome this [Jung et al. (2021)](http://arxiv.org/abs/2003.13726) introduced a node-based group sparse regularization technique that employs neuronal instead of synaptic regularization parameters. In a similar vein [Barry et al. (2024)](http://arxiv.org/abs/2306.01690) also use importance values based on neuronal activation levels. However, both approaches cannot completely dispense with synaptic parameters in their computations.
+To close the gap, we propose Neuronal Intelligence (NI), a purely neuron-based importance measure with minimal memory footprint that can be used as a drop-in replacement for structural regularization or continual learning algorithm. We further simplify the algorithm to implement it as a self-contained optimizer that requires only minimal change compared to a non-CL approach.
+The algorithms are inspired by neurobiology where neurons possess the bio-chemical machinery to modulate their propensity of being recruited into a new memory trace ([Yiu et al., 2014](https://www.sciencedirect.com/science/article/pii/S089662731400628X), [Josselyn & Tonegawa, 2020](https://www.science.org/doi/full/10.1126/science.aaw4325)). In our case, we employ an importance ranking such that the subset of least important neurons always remains plastic while high importance guarantees stability.
+
+Our main contributions are the following:
+<ul>
+    <li>We propose a simplification of the importance computation in SI with negligible performance loss.</li>
+    <li>We introduce Regularization-based Neuronal Intelligence (NI-light) for resource-efficient continual learning, a regularization-based strategy that stores the aggregate synaptic importance at the neuronal level.</li>
+    <li>We replace the regularization in Optimizer-based Neuronal Intelligence (NI-opt) with a learning rate multiplier to rely solely on neuronal parameters and to provide minimal implementation effort.</li>
+    <li>We show that NI-light and NI-opt yield the same or comparable performance to SI on Permuted MNIST and split CIFAR-100, with a two- respectively fourfold reduction in required memory.</li>
+</ul>
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
