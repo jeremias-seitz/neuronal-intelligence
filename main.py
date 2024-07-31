@@ -69,7 +69,8 @@ def main(config):
                                       algorithm=algorithm,  
                                       callbacks=callbacks, 
                                       configuration=remove_target_key(config),
-                                      network_propagator=network_propagator)
+                                      network_propagator=network_propagator,
+                                      optimizer=optimizer)
     
     scheduler_wrapper = LRSchedulerWrapper()
 
