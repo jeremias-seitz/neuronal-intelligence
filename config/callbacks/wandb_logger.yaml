@@ -2,5 +2,5 @@ wandb_logger:
   _target_: callbacks.WANDBLogger
 
   enable_wandb: True
-  experiment_name: 'cifar100_simplified_ni'
-  entity: 'continual_learning'
+  experiment_name: 'simplification_validation'
+  entity: 'jeremias-seitz'
