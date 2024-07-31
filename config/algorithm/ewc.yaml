@@ -1,5 +1,5 @@
 _target_: algorithms.ElasticWeightConsolidation
 
-regularization_strength: 3.5
+regularization_strength: 3
 damping: 0.1
 name: 'EWC'

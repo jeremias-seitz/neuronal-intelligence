@@ -1,6 +1,6 @@
 _target_: algorithms.RiemannianWalk
 
-regularization_strength: 1000
+regularization_strength: 4.5
 damping: 0.01
 alpha: 0.9
 name: 'RWalk'
