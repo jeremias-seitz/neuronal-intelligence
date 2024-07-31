@@ -75,6 +75,8 @@ Our main contributions are the following:
     <li>We show that NI-light and NI-opt yield the same or comparable performance to SI on Permuted MNIST and split CIFAR-100, with a two- respectively fourfold reduction in required memory.</li>
 </ul>
 
+This repository implements the continual learning algorithms SI, SI-light, NI-light, NI-opt, Online EWC, MAS and RWalk for supervised classification tasks, see [algorithms](#algorithms). Functionalities such as joint training or task shuffling are implemented and can be changed via flags in the configuration file.
+
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 
@@ -245,7 +247,7 @@ Defines a number of backbones to the training process. Currently defined are:
 <ul>
     <li>MLP</li>
     <li>ResNets</li>
-    <li>Vision transformer<li>
+    <li>Vision transformer</li>
 </ul>
 
 
